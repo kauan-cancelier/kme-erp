@@ -25,16 +25,16 @@ public class AccessScopesController {
 	@PostMapping
 	public ResponseEntity<?> insert(@RequestBody AccessScope accessScope) {
 		AccessScope savedAccessScope = accessScopeService.save(accessScope);
-		return ResponseEntity.created(URI.create("/accessScopes/id/" + savedAccessScope.getId())).build();
+		return ResponseEntity.created(URI.create("/accessScopes/" + savedAccessScope.getId())).build();
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> findBy(@PathVariable("id") Integer id) {
 		AccessScope findedAccessScope = accessScopeService.findBy(id);
 		return ResponseEntity.ok(findedAccessScope);
 	}
 	
-	@DeleteMapping("/id/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteBy(@PathVariable("id") Integer id) {
 		AccessScope deletedAccessScope = accessScopeService.deleteBy(id);
 		return ResponseEntity.ok(deletedAccessScope);

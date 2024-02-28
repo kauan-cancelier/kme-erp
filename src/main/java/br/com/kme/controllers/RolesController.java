@@ -25,16 +25,16 @@ public class RolesController {
 	@PostMapping
 	public ResponseEntity<?> insert(@RequestBody Role role) {
 		Role savedRole = roleService.save(role);
-		return ResponseEntity.created(URI.create("/roles/id/" + savedRole.getId())).build();
+		return ResponseEntity.created(URI.create("/roles/" + savedRole.getId())).build();
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> findBy(@PathVariable("id") Integer id) {
 		Role findedRole = roleService.findBy(id);
 		return ResponseEntity.ok(findedRole);
 	}
 	
-	@DeleteMapping("/id/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteBy(@PathVariable("id") Integer id) {
 		Role deletedRole = roleService.deleteBy(id);
 		return ResponseEntity.ok(deletedRole);

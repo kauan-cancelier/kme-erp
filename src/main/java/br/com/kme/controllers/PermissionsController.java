@@ -25,16 +25,16 @@ public class PermissionsController {
 	@PostMapping
 	public ResponseEntity<?> insert(@RequestBody Permission permission) {
 		Permission savedPermission = permissionService.save(permission);
-		return ResponseEntity.created(URI.create("/permissions/id/" + savedPermission.getId())).build();
+		return ResponseEntity.created(URI.create("/permissions/" + savedPermission.getId())).build();
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> findBy(@PathVariable("id") Integer id) {
 		Permission findedPermission = permissionService.findBy(id);
 		return ResponseEntity.ok(findedPermission);
 	}
 	
-	@DeleteMapping("/id/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteBy(@PathVariable("id") Integer id) {
 		Permission deletedPermission = permissionService.deleteBy(id);
 		return ResponseEntity.ok(deletedPermission);

@@ -27,19 +27,19 @@ public class UsersController {
 	public ResponseEntity<?> insert(@RequestBody User user) {
 		try {
 			User savedUser = userService.save(user);			
-			return ResponseEntity.created(URI.create("/users/id/" + savedUser.getId())).build();
+			return ResponseEntity.created(URI.create("/users/" + savedUser.getId())).build();
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), null, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> findBy(@PathVariable("id") Integer id) {
 		User findedUser = userService.findBy(id);
 		return ResponseEntity.ok(findedUser);
 	}
 	
-	@DeleteMapping("/id/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteBy(@PathVariable("id") Integer id) {
 		User deletedUser = userService.deleteBy(id);
 		return ResponseEntity.ok(deletedUser);
