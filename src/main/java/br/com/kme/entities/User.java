@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "User")
 @Table(name = "users")
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User implements Validated {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class User extends AuditTrailBase implements Validated {
 
 	@Id
 	@Column(name = "id")

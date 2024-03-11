@@ -1,5 +1,7 @@
 package br.com.kme.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +22,7 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 	@Query("DELETE "
 			+ "FROM User u "
 			+ "WHERE u.id = :id")
-	public User deleteBy(@Param("id") Integer id);
+	public void deleteBy(@Param("id") Integer id);
 	
 	@Query("SELECT u "
 			+ "FROM User u "
@@ -32,6 +34,9 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 			+ "FROM User u "
 			+ "WHERE u.email = :email")
 	public User findBy(@Param("email") String email);
+	
+	@Query("SELECT u FROM User u WHERE (:name IS NULL OR u.name LIKE %:name%) ORDER BY u.name")
+	public Page<User> list(@Param("name") String name, Pageable pageable);
 
 	
 }

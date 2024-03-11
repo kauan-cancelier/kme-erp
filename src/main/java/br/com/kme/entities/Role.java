@@ -14,8 +14,8 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "Role")
 @Table(name = "roles")
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Role {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class Role extends AuditTrailBase {
 
 	@Id
 	@Column(name = "id")

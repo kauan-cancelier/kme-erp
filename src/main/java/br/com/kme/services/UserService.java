@@ -1,5 +1,7 @@
 package br.com.kme.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 
 import br.com.kme.entities.User;
@@ -14,5 +16,7 @@ public interface UserService {
 	public User findBy(Integer id);
 	
 	public User login(String email, String password);
+	
+	public Page<User> listBy(String name, Pageable pageable);
 	
 }

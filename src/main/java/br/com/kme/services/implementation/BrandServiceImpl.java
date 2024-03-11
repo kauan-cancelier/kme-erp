@@ -20,7 +20,7 @@ public class BrandServiceImpl implements BrandService {
 	
 	@Override
 	public Brand save(Brand brand) {
-		Preconditions.checkNotNull(brand, "A marca é obrigatória para salvar.");
+		Preconditions.checkNotNull(brand, "A marca é obrigatória para salvar. ");
 		return brandsRepository.save(brand);
 	}
 

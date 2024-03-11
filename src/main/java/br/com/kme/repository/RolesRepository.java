@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.com.kme.entities.Role;
 
 @Repository
-public interface RolesRepository  extends JpaRepository<Role, Integer>{
+public interface RolesRepository extends JpaRepository<Role, Integer> {
 	
 	@Query("SELECT r "
 			+ "FROM Role r "
