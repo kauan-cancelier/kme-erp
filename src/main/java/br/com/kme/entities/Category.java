@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "categories")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class Category extends AuditTrailBase implements Validated {
+public class Category extends EntityBase implements Validated {
 	
 	@Id
 	@Column(name = "id")

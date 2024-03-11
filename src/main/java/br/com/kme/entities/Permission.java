@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "permissions")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class Permission extends AuditTrailBase {
+public class Permission extends EntityBase {
 
 	@Id
 	@Column(name = "id")
