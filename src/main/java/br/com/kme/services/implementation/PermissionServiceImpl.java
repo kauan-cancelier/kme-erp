@@ -1,5 +1,6 @@
 package br.com.kme.services.implementation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
@@ -11,6 +12,7 @@ import br.com.kme.services.PermissionService;
 @Service
 public class PermissionServiceImpl implements PermissionService {
 	
+	@Autowired
 	private PermissionsRepository permissionsRepository;
 
 	@Override
@@ -31,6 +33,12 @@ public class PermissionServiceImpl implements PermissionService {
 		Permission permission = permissionsRepository.findBy(id);
 		Preconditions.checkNotNull(id, "Nenhum permissão encontrada para o id informado. ");
 		return permission;
+	}
+
+	@Override
+	public String[] permissionList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

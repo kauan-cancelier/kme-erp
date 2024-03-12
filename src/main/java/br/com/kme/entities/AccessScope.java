@@ -30,7 +30,7 @@ public class AccessScope {
 	@NotNull(message = "O papel é obrigatório. ")
 	private Role role;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "permission_id")
 	@NotNull(message = "A permissão é obrigatória. ")
 	private Permission permission;
@@ -39,5 +39,6 @@ public class AccessScope {
 	@JoinColumn(name = "user_id")
 	@NotNull(message = "O usuário é obrigatório.")
 	private User user;
+	
 	
 }

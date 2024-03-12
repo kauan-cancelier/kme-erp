@@ -13,4 +13,6 @@ public interface PermissionService {
 
 	public Permission findBy(Integer id);
 	
+	public String[] permissionList();
+	
 }

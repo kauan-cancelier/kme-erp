@@ -15,6 +15,8 @@ public interface UserService {
 
 	public User findBy(Integer id);
 	
+	public User findBy(String email);
+	
 	public User login(String email, String password);
 	
 	public Page<User> listBy(String name, Pageable pageable);

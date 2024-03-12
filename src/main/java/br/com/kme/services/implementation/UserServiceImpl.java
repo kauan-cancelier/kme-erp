@@ -3,6 +3,7 @@ package br.com.kme.services.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
@@ -21,11 +22,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User save(User user) {
 		Preconditions.checkNotNull(user, "O usuário é obrigatório para salvar. ");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		if(user.isPersisted()) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			return usersRepository.save(user);
 		}
 		Preconditions.checkArgument(usersRepository.findBy(user.getEmail()) == null,
 				"O email informado '" + user.getEmail() +"' já está em uso. ");
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return usersRepository.save(user);
 
 	}
@@ -58,6 +62,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Page<User> listBy(String name, Pageable pageable) {
 		return usersRepository.list(name, pageable);
+	}
+
+	@Override
+	public User findBy(String email) {
+		Preconditions.checkNotNull(email, "O email é obrigatório. ");
+		User user = usersRepository.findBy(email);
+		Preconditions.checkNotNull(user, "Nenhum usuário encontrado para o email '" + email + "'.");
+		return user;
 	}
 
 
