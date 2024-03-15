@@ -21,7 +21,7 @@ public class AccessCredentialsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = usersRepository.findBy(email);
-		Preconditions.checkNotNull(user, "Não foi encontrado nenhum usuario para o email informado. ");
+		Preconditions.checkNotNull(user, "Não há cadastros para esse email. ");
 		return new AccessCredentials(user, user.getRole());
 	}
 

@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -15,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "roles")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class Role extends EntityBase {
+public class Role extends EntityBase implements Validated {
 
 	@Id
 	@Column(name = "id")
@@ -27,5 +28,11 @@ public class Role extends EntityBase {
     @Size(max = 150, min = 3, message = "O nome deve conter entre 3 e 100 caracteres. ")
     @NotBlank(message = "O nome é obrigatório. ")
     private String name;
+
+	@Transient
+	@Override
+	public boolean isPersisted() {
+		return getId() != null && getId() > 0;
+	}
 	
 }

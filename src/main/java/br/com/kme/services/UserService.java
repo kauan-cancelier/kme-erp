@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 
+import br.com.kme.entities.Role;
 import br.com.kme.entities.User;
 
 @Validated
@@ -16,6 +17,8 @@ public interface UserService {
 	public User findBy(Integer id);
 	
 	public User findBy(String email);
+	
+	public User findBy(Role role);
 	
 	public User login(String email, String password);
 	

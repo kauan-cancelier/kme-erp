@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
 
+import br.com.kme.entities.Role;
 import br.com.kme.entities.User;
 import br.com.kme.repository.UsersRepository;
 import br.com.kme.services.UserService;
@@ -69,6 +70,14 @@ public class UserServiceImpl implements UserService {
 		Preconditions.checkNotNull(email, "O email é obrigatório. ");
 		User user = usersRepository.findBy(email);
 		Preconditions.checkNotNull(user, "Nenhum usuário encontrado para o email '" + email + "'.");
+		return user;
+	}
+
+	@Override
+	public User findBy(Role role) {
+		Preconditions.checkNotNull(role, "O papel é obrigatório. ");
+		User user = usersRepository.findBy(role);
+		Preconditions.checkNotNull(user, "Nenhum usuário encontrado para o papel '" + role.getName() + "'.");
 		return user;
 	}
 

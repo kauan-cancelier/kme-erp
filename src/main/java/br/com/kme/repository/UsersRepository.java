@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import br.com.kme.entities.Role;
 import br.com.kme.entities.User;
 
 @Repository
@@ -34,6 +35,11 @@ public interface UsersRepository extends JpaRepository<User, Integer> {
 			+ "FROM User u "
 			+ "WHERE u.email = :email")
 	public User findBy(@Param("email") String email);
+	
+	@Query("SELECT u "
+			+ "FROM User u "
+			+ "WHERE u.role = :role")
+	public User findBy(@Param("role") Role role);
 	
 	@Query("SELECT u FROM User u WHERE (:name IS NULL OR u.name LIKE %:name%) ORDER BY u.name")
 	public Page<User> list(@Param("name") String name, Pageable pageable);

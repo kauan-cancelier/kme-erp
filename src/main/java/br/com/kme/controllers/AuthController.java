@@ -25,7 +25,7 @@ import br.com.kme.services.UserService;
 public class AuthController {
 	
 	@Autowired
-	private TokenJwtManager gerenciadoDeToken;
+	private TokenJwtManager tokenManager;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -42,7 +42,7 @@ public class AuthController {
 		
 		User user = userService.findBy(loginDto.getEmail());
 
-		String generatedToken = gerenciadoDeToken.generate(
+		String generatedToken = tokenManager.generate(
 				user.getEmail(),
 				user.getRole()
 			);
